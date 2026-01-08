@@ -42,25 +42,29 @@ npm run dev
 
 ```
 src/
-├── components/       # Reusable components
-│   ├── Navbar.tsx   # Navigation bar
-│   └── MovieCard.tsx # Movie card with favorite button
-├── pages/           # Page components
-│   ├── Home.tsx     # Home page with movie list
-│   └── Favorites.tsx # Favorites page
-├── types/           # TypeScript type definitions
-│   └── Movie.ts     # Movie interface
-├── utils/           # Utility functions
-│   └── favorites.ts # LocalStorage favorites management
-└── App.tsx          # Main app component with routing
+├── components/          # All React components
+│   ├── Home.tsx        # Home page with movie search
+│   ├── Favorites.tsx   # Favorites page
+│   ├── MovieCard.tsx   # Movie card component
+│   ├── Navbar.tsx      # Navigation bar
+│   └── styles/         # All CSS files
+│       ├── Home.css
+│       ├── Favorites.css
+│       ├── MovieCard.css
+│       └── Navbar.css
+├── context/            # React Context
+│   └── MovieContext.tsx # Favorites management
+├── types/              # TypeScript definitions
+│   └── Movie.ts
+└── App.tsx             # Main app component
 ```
 
 ## How It Works
 
 - **Movie Data**: Fetched from The Movie Database (TMDB) API
-- **Favorites Storage**: Uses browser's localStorage (no backend needed!)
+- **Favorites Storage**: Uses browser's localStorage via React Context
 - **Routing**: React Router for navigation between pages
-- **Styling**: CSS modules for component-specific styles
+- **Styling**: Component-specific CSS organized in styles folder
 
 ## Usage
 

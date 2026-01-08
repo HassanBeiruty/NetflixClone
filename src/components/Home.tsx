@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Movie } from '../types/Movie'
-import MovieCard from '../components/MovieCard'
-import './Home.css'
+import MovieCard from './MovieCard'
+import './styles/Home.css'
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY || ''
 const BASE_URL = 'https://api.themoviedb.org/3'
@@ -41,7 +41,6 @@ const Home = () => {
     debounceTimer.current = window.setTimeout(() => fetchMovies(query, false), 500)
     return () => { if (debounceTimer.current) clearTimeout(debounceTimer.current) }
   }, [searchQuery])
-
 
   if (loading) return <div className="page-container"><div className="loading">Loading movies...</div></div>
 

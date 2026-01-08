@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { Movie } from '../types/Movie'
-import { getFavorites, addToFavorites, removeFromFavorites } from '../utils/favorites'
 
 interface MovieContextType {
   favorites: Movie[]
@@ -10,6 +9,7 @@ interface MovieContextType {
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined)
+const STORAGE_KEY = 'netflix-clone-favorites'
 
 export const useMovieContext = () => {
   const context = useContext(MovieContext)
@@ -19,16 +19,29 @@ export const useMovieContext = () => {
 
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
   const [favorites, setFavorites] = useState<Movie[]>([])
-  useEffect(() => setFavorites(getFavorites()), [])
+
+  useEffect(() => {
+    const data = localStorage.getItem(STORAGE_KEY)
+    setFavorites(data ? JSON.parse(data) : [])
+  }, [])
+
+  const addFavorite = (movie: Movie) => {
+    const updated = favorites.find(m => m.id === movie.id) ? favorites : [...favorites, movie]
+    setFavorites(updated)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+  }
+
+  const removeFavorite = (movieId: number) => {
+    const updated = favorites.filter(m => m.id !== movieId)
+    setFavorites(updated)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+  }
+
+  const isFavorite = (movieId: number) => favorites.some(m => m.id === movieId)
+
   return (
-    <MovieContext.Provider value={{
-      favorites,
-      addFavorite: (movie) => { addToFavorites(movie); setFavorites(getFavorites()) },
-      removeFavorite: (id) => { removeFromFavorites(id); setFavorites(getFavorites()) },
-      isFavorite: (id) => favorites.some(m => m.id === id)
-    }}>
+    <MovieContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
       {children}
     </MovieContext.Provider>
   )
 }
-

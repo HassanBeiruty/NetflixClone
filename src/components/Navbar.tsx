@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import './Navbar.css'
+import './styles/Navbar.css'
 
 const Navbar = () => {
   const { pathname } = useLocation()
@@ -33,4 +33,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-

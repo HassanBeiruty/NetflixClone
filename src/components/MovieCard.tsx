@@ -1,6 +1,6 @@
 import { Movie } from '../types/Movie'
 import { useMovieContext } from '../context/MovieContext'
-import './MovieCard.css'
+import './styles/MovieCard.css'
 
 interface MovieCardProps {
   movie: Movie
