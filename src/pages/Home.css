@@ -1,0 +1,152 @@
+.page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.home-header {
+  margin-bottom: 2rem;
+}
+
+.home-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.home-header p {
+  font-size: 1.1rem;
+  color: #b3b3b3;
+}
+
+.search-container {
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.search-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  font-size: 1.1rem;
+  background-color: #2a2a2a;
+  border: 2px solid #404040;
+  border-radius: 8px;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #e50914;
+  background-color: #333333;
+}
+
+.search-input::placeholder {
+  color: #808080;
+}
+
+.search-loading {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.2rem;
+  pointer-events: none;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+  z-index: 1;
+}
+
+.clear-search-btn:hover {
+  color: #ffffff;
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #b3b3b3;
+}
+
+.no-results p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.no-results-hint {
+  font-size: 1rem;
+  color: #808080;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+
+.error {
+  color: #e50914;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 100%;
+  }
+
+  .search-input {
+    font-size: 1rem;
+    padding: 0.875rem 2.5rem 0.875rem 1.25rem;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .home-header h1 {
+    font-size: 2rem;
+  }
+}
+
