@@ -15,7 +15,6 @@ const Home = () => {
   const [searchLoading, setSearchLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const debounceTimer = useRef<number | null>(null)
-  const searchInputRef = useRef<HTMLInputElement>(null)
   const isSearching = searchQuery.trim() !== ''
 
   const fetchMovies = async (query: string, isInitial = false) => {
@@ -56,7 +55,6 @@ const Home = () => {
         <div className="search-input-wrapper">
           <input
             id="movie-search"
-            ref={searchInputRef}
             type="text"
             className="search-input"
             placeholder="Search for movies..."
@@ -66,18 +64,17 @@ const Home = () => {
           />
           {searchLoading && <span className="search-loading">⏳</span>}
           {searchQuery && !searchLoading && (
-            <button className="clear-search-btn" onClick={() => { setSearchQuery(''); searchInputRef.current?.focus() }} aria-label="Clear search">✕</button>
+            <button className="clear-search-btn" onClick={() => setSearchQuery('')} aria-label="Clear search">✕</button>
           )}
         </div>
       </div>
 
-      {movies.length === 0 && !loading && isSearching && (
+      {isSearching && movies.length === 0 && (
         <div className="no-results">
           <p>No movies found for "{searchQuery}"</p>
           <p className="no-results-hint">Try a different search term</p>
         </div>
       )}
-
       {movies.length > 0 && (
         <div className="movies-grid">
           {movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}

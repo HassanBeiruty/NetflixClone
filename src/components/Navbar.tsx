@@ -26,6 +26,9 @@ const Navbar = () => {
           <Link to="/favorites" className={`navbar-link ${pathname === '/favorites' ? 'active' : ''}`}>
             <span>My List</span>
           </Link>
+          <Link to="/notes" className={`navbar-link ${pathname === '/notes' ? 'active' : ''}`}>
+            <span>Notes</span>
+          </Link>
         </div>
       </div>
     </nav>

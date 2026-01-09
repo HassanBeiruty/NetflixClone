@@ -26,9 +26,11 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   const addFavorite = (movie: Movie) => {
-    const updated = favorites.find(m => m.id === movie.id) ? favorites : [...favorites, movie]
-    setFavorites(updated)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+    if (!favorites.find(m => m.id === movie.id)) {
+      const updated = [...favorites, movie]
+      setFavorites(updated)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+    }
   }
 
   const removeFavorite = (movieId: number) => {
